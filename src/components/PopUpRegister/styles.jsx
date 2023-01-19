@@ -12,7 +12,7 @@ export const ContainerPageRegister = styled.div`
     align-items: center;
 `;
 
-export const  ContainerPopUpRegister = styled.div`
+export const ContainerPopUpRegister = styled.div`
     position: relative;
     width: 30%;
     height: auto;
@@ -40,7 +40,7 @@ export const ImgRegister = styled.img`
     height: 50px;
 `;
 
-export const  TextTitleRegister = styled.h1`
+export const TextTitleRegister = styled.h1`
     color: #FFF;
     margin-bottom: 1rem;
 `;
@@ -65,6 +65,7 @@ export const InputRegister = styled.input`
     border-radius: 6px;
     margin-bottom: 1rem;
     height: 32px;
+    width: 100%;
     border: none;
 `;
 export const BtnEnterRegister = styled.button`
@@ -76,3 +77,27 @@ export const BtnEnterRegister = styled.button`
     height: 24px;
 `;
 
+export const ContainerIconPassView = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+`;
+
+export const IconPassView = styled.img`
+   width: 24px;
+   position: absolute;
+   right: 0.2rem;
+   top: 0.2rem;
+`;
+
+export const BtnIconPassView = styled.button`
+    background-color: transparent;
+    border: none;
+    outline: 0;
+`;
+
+export const SpanIconPassView = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
