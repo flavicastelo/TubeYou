@@ -24,8 +24,8 @@ import MenuIcon from "../../assets/menu-hamburger.png";
 import NavBar from "../Navbar";
 import NavBarOpen from "../NavBarOpen";
 import { useNavigate } from "react-router-dom";
-import PopUpLogin from "../PopUpLogin";
-import PopUpRegister from "../PopUpRegister";
+import PopUpLogin from "../Login";
+import PopUpRegister from "../Register";
 
 export default function Home() {
   const navigation = useNavigate();
@@ -48,14 +48,14 @@ export default function Home() {
             <LupIcon src={Lup} />
           </LupBtn>
         </FormSearch>
-        <LoginBtn onClick={() => setIsOpenPopUp(true)}>
+        <LoginBtn onClick={() => navigation("/login")}>
           <Login>Entrar</Login>
         </LoginBtn>
-        {isOpenPopUp ? <PopUpLogin /> : null}
-        <RegisterBtn onClick={() => setIsOpenRegister(true)}>
+       
+        <RegisterBtn onClick={() => navigation("/register")}>
           <Register>Cadastre-se</Register>
         </RegisterBtn>
-        {isOpenRegister ? <PopUpRegister onClosed={() => setIsOpenRegister(false)}/> : null}
+        
       </Header>
       <Main>
         {isOpen ? <NavBarOpen /> : <NavBar />}

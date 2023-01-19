@@ -19,7 +19,6 @@ import IconView from "../../assets/view.png";
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 
-
 export default function PopUpRegister(onClosed = () => {}) {
     const [showPass, setShowPass] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
