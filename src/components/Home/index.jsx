@@ -55,7 +55,7 @@ export default function Home() {
         <RegisterBtn onClick={() => setIsOpenRegister(true)}>
           <Register>Cadastre-se</Register>
         </RegisterBtn>
-        {isOpenRegister ? <PopUpRegister /> : null}
+        {isOpenRegister ? <PopUpRegister onClosed={() => setIsOpenRegister(false)}/> : null}
       </Header>
       <Main>
         {isOpen ? <NavBarOpen /> : <NavBar />}
