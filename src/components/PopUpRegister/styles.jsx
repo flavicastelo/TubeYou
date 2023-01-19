@@ -16,7 +16,7 @@ export const ContainerPopUpRegister = styled.div`
     position: relative;
     width: 30%;
     height: auto;
-    background-image: linear-gradient(to right top, #48cbe8, #3ad3eb, #2adbed, #1be3ed, #12ebeb);
+    background: #272727;
     border-radius: 20px;
     margin: 0 auto;
     align-items: center;
@@ -34,6 +34,7 @@ export const BtnClose = styled.button`
     right: 1rem;
     top: 1rem;
     font-size: 20px;
+    color: #48CBE8;
 `;
 
 export const ImgRegister = styled.img`
@@ -58,7 +59,7 @@ export const ContainerInput = styled.div`
     width: 80%;
 `;
 export const LabelRegister = styled.label`
-    
+    color: #FFF;
 `;
 
 export const InputRegister = styled.input`
@@ -67,9 +68,10 @@ export const InputRegister = styled.input`
     height: 32px;
     width: 100%;
     border: none;
+    padding: 0.5rem;
 `;
 export const BtnEnterRegister = styled.button`
-    background-color: #FFF;
+    background-color: #48CBE8;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -94,6 +96,7 @@ export const BtnIconPassView = styled.button`
     background-color: transparent;
     border: none;
     outline: 0;
+    cursor: pointer;
 `;
 
 export const SpanIconPassView = styled.span`
