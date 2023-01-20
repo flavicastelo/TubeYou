@@ -24,14 +24,10 @@ import MenuIcon from "../../assets/menu-hamburger.png";
 import NavBar from "../Navbar";
 import NavBarOpen from "../NavBarOpen";
 import { useNavigate } from "react-router-dom";
-import PopUpLogin from "../Login";
-import PopUpRegister from "../Register";
 
 export default function Home() {
   const navigation = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenPopUp, setIsOpenPopUp] = useState(false);
-  const [isOpenRegister, setIsOpenRegister] = useState(false);
 
   return (
     <Container>

@@ -3,23 +3,29 @@ import {
     ContainerPopUpLogin,
     TextTitleLogin,
     FormLogin,
-    LabelLogin,
     InputLogin,
     BtnEnterLogin,
-    BtnClose,
     ContainerInput,
+    LinkPage,
+    ContainerLinkPage,
     ForgotPass,
-    ImgLogin,
+    Marker,
+    SpanIconView,
+    BtnIconView,
+    IconView
 } from "./styles";
 import ImageLogin from "../../assets/userlogin.png";
 import axios from "axios";
 import { React, useState, useEffect, useRef, useContext } from "react";
 import IconHide from "../../assets/hide.png";
-import IconView from "../../assets/view.png";
-import AuthContext from "../../context/AuthProvider"
+import IconViewImg from "../../assets/view.png";
+import AuthContext from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom"; 
 
 
 export default function PopUpLogin(onClosed) {
+    const navigation = useNavigate();
+
     const { setAuth } = useContext(AuthContext);
     const emailRef = useRef();
     const erroRef = useRef();
@@ -44,22 +50,22 @@ export default function PopUpLogin(onClosed) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-            const data = {
-                email: email,
-                password: password,
+
+        const data = {
+            email: email,
+            password: password,
+        }
+        axios.post('http://localhost:3000/api/auth/login', data,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
             }
-            axios.post('http://localhost:3000/api/auth/login', data,
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            ).then(function (response) {
-                setAccessToken(response?.data?.accessToken);
-                console.log(response);
-            }).catch(function(error){
-                console.log(email, password);
-            if(!error?.response){
+        ).then(function (response) {
+            setAccessToken(response?.data?.accessToken);
+            console.log(response);
+        }).catch(function (error) {
+            console.log(email, password);
+            if (!error?.response) {
                 setErroMsg('No Server Response');
             } else if (error.response?.status === 400) {
                 setErroMsg('Missing Email or Password!');
@@ -69,13 +75,13 @@ export default function PopUpLogin(onClosed) {
                 setErroMsg('Login Failed!');
             }
             erroRef.current.focus();
-            });
-            
-            setAuth({email, password, accessToken});
-            setEmail('');
-            setPassword('');
-            setSuccess(true);
-        
+        });
+
+        setAuth({ email, password, accessToken });
+        setEmail('');
+        setPassword('');
+        setSuccess(true);
+
 
     };
 
@@ -85,30 +91,45 @@ export default function PopUpLogin(onClosed) {
 
                 <ContainerPageLogin>
                     <ContainerPopUpLogin>
-                        <BtnClose onClick={onClosed}>X</BtnClose>
-                        <ImgLogin src={ImageLogin} />
+                        
                         <TextTitleLogin>Faça seu Login</TextTitleLogin>
                         <FormLogin>
                             <ContainerInput>
-                                <LabelLogin>E-mail</LabelLogin>
                                 <InputLogin
+                                    placeholder="Digite seu e-mail"
+                                    name="email"
                                     type="text"
                                     value={email}
                                     ref={emailRef}
                                     onChange={e => setEmail(e.target.value)}
                                     required
                                 />
-                                <LabelLogin>Senha</LabelLogin>
+                            </ContainerInput>
+                            <ContainerInput>
                                 <InputLogin
-                                    type="password"
+                                    placeholder="Digite sua senha"
+                                    name="password"
+                                    type={showPass ? "text" : "password"}
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     required
                                 />
+                                <SpanIconView>
+                                    <BtnIconView type="button" onClick={handleShowPass}>
+                                        <IconView src={showPass ? IconViewImg : IconHide} />
+                                    </BtnIconView>
+                                </SpanIconView>
                             </ContainerInput>
                             <BtnEnterLogin type="submit" onClick={handleSubmit}>Enviar</BtnEnterLogin>
                         </FormLogin>
                         <ForgotPass>Esqueci minha senha</ForgotPass>
+                        <ContainerLinkPage>
+                        <LinkPage onClick={() => navigation("/")}>Página Inicial</LinkPage>
+                        <Marker> | </Marker>
+                        <LinkPage onClick={() => navigation("/register")}>Cadastre-se</LinkPage>
+                        </ContainerLinkPage>
+                        
+
                     </ContainerPopUpLogin>
                 </ContainerPageLogin>)}
         </>
