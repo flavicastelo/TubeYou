@@ -91,7 +91,6 @@ export default function PopUpLogin(onClosed) {
 
                 <ContainerPageLogin>
                     <ContainerPopUpLogin>
-                        
                         <TextTitleLogin>Faça seu Login</TextTitleLogin>
                         <FormLogin>
                             <ContainerInput>
