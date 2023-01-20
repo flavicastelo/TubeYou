@@ -1,48 +1,59 @@
+import React, { useState } from "react";
 import {
-    Header,
-    IconMenu,
-    IconImg,
-    Logo,
-    FormSearch,
-    LupBtn,
-    Search,
-    LupIcon,
-    LoginBtn,
-    Login,
-    RegisterBtn,
-    Register,
-    BtnLogo
-  } from "./styles";
+  Header,
+  Logo,
+  FormSearch,
+  LupBtn,
+  Search,
+  LupIcon,
+  LoginBtn,
+  Login,
+  RegisterBtn,
+  Register,
+  BtnLogo,
+  ContainerLinks,
+  ImgLogin
+} from "./styles";
+
 import LogoImg from "../../assets/logo.png";
 import Lup from "../../assets/lup.png";
-import MenuIcon from "../../assets/menu-hamburger.png";
-import PopUpLogin from "../PopUpLogin";
-import PopUpRegister from "../PopUpRegister";
+import { useNavigate } from "react-router-dom";
+import IconLogin from "../../assets/loginIcon.png";
+import MenuHamburger from "../MenuHamburguer";
 
 export default function HeaderComponent() {
-    return (
-        <Header>
-        <IconMenu onClick={() => setIsOpen(!isOpen)}>
-          <IconImg src={MenuIcon} alt="Icone de menu hamburguer" />
-        </IconMenu>
-        <BtnLogo onClick={() => navigation("/")}>
+  const navigation = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+
+  return (
+    <Header>
+      <MenuHamburger />
+
+      <BtnLogo onClick={() => navigation("/")}>
         <Logo src={LogoImg} alt="Logo do TubeYou" />
-        </BtnLogo>
-        <FormSearch>
-          <Search />
-          <LupBtn type="submit">
-            <LupIcon src={Lup} />
-          </LupBtn>
-        </FormSearch>
-        <LoginBtn onClick={() => setIsOpenPopUp(true)}>
+      </BtnLogo>
+
+      <FormSearch>
+        <Search placeholder="Buscar" />
+        <LupBtn type="submit">
+          <LupIcon src={Lup} />
+        </LupBtn>
+      </FormSearch>
+
+      <ContainerLinks>
+        <LoginBtn onClick={() => navigation("/login")}>
           <Login>Entrar</Login>
+          <ImgLogin src={IconLogin} />
         </LoginBtn>
-        {isOpenPopUp ? <PopUpLogin /> : null}
-        <RegisterBtn onClick={() => setIsOpenRegister(true)}>
+        <RegisterBtn onClick={() => navigation("/register")}>
           <Register>Cadastre-se</Register>
         </RegisterBtn>
-        {isOpenRegister ? <PopUpRegister /> : null}
-      </Header>
-    );
+
+      </ContainerLinks>
+
+
+    </Header>
+  );
 
 }

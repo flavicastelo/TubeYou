@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
 export const ContainerNavBar = styled.div`
-    background-color: #404040;
+    background-color: #0e0d0c;
     display: flex;
-    width: 3.5rem;
+    width: 3.8rem;
     height: 100vh;
     flex-direction: column;
     align-items: center;
+    padding: 1.1rem;
+    position: absolute;
+    top: 3rem;
+    left: 0;
 `;
 
 export const ContainerItem = styled.div`
@@ -23,22 +27,19 @@ export const ItemBtn = styled.button`
 export const HomeImg = styled.img`
     width: 32px;
     height: 32px;
-    margin: 0 1rem;
 `;
 
 export const VideosImg = styled.img`
     width: 32px;
     height: 32px;
-    margin: 0 1rem;
 `;
 
 export const AboutImg = styled.img`
     width: 32px;
     height: 32px;
-    margin: 0 1rem;
 `;
 
 export const TextItem = styled.p`
-    font-size: 12px;
+    font-size: 10px;
     color: #FFF;
 `;

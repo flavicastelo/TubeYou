@@ -1,24 +1,17 @@
+import styled from "styled-components";
+
+export const Container = styled.div`
+    
+`;
+
 export const Header = styled.header`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 3.5rem;
     width: 100%;
-    background-color: #404040;
-`;
-
-export const IconMenu = styled.button`
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    border: none;
-    outline: 0;
-    cursor: pointer;
-`;
-
-export const IconImg = styled.img`
-    width: 32px;
-    height: 32px;
+    background-color: #0e0d0c;
+    padding: 1rem;
 `;
 
 export const BtnLogo = styled.button`
@@ -42,8 +35,12 @@ export const Search = styled.input`
     width: 430px;
     border-radius: 50px;
     background-color: #FFF;
-    color: #000;
+    color: #0e0d0c;
     border: none;
+    padding: 1rem;
+    &:focus{
+        outline: 2px solid #B57EDC;
+    }
 `;
 
 export const LupBtn = styled.button`
@@ -61,28 +58,66 @@ export const LupIcon = styled.img`
     right: 2rem;
 `;
 
+export const ContainerLinks = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
 export const LoginBtn = styled.button`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
     background-color: transparent;
-    border: none;
     outline: 0;
     cursor: pointer;
+    border: none;
+    width: 120px;
+    height: 32px;
+    margin-right: 1rem;
+    color: #B57EDC;
+   
+`;
+
+export const ImgLogin = styled.img`
+    height: 18px;
+    margin-left: 0.2rem;
 `;
 
 export const Login = styled.p`
-    color: #48CBE8;
+    
+    width: 40px;
 `;
 
 export const RegisterBtn = styled.button`
     background-color: transparent;
     outline: 0;
-    border-color: #48CBE8;
+    border-color: #B57EDC;
     border-radius: 50px;
     width: 120px;
     height: 32px;
     border-style: solid;
     cursor: pointer;
+    color: #B57EDC;
+    &:hover{
+        background-color: #B57EDC;
+        color: #FFF;
+    }
 `;
 
 export const Register = styled.p`
-    color: #48CBE8;
+    
 `;
+
+export const Main = styled.main`
+    display: flex;
+    flex-direction: row;
+`;
+
+export const Body = styled.section`
+  background-color: #515151; 
+  width: 100%;
+`;
+

@@ -14,7 +14,6 @@ import {
     BtnIconView,
     IconView
 } from "./styles";
-import ImageLogin from "../../assets/userlogin.png";
 import axios from "axios";
 import { React, useState, useEffect, useRef, useContext } from "react";
 import IconHide from "../../assets/hide.png";
