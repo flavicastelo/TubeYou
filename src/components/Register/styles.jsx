@@ -6,7 +6,7 @@ export const ContainerPageRegister = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.3);
+    background-image: linear-gradient(to right top, #242522, #2d2e2b, #363734, #3f403d, #494a46);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@ export const ContainerPopUpRegister = styled.div`
     position: relative;
     width: 30%;
     height: auto;
-    background: #272727;
+    background-color: #0e0d0c;
     border-radius: 20px;
     margin: 0 auto;
     align-items: center;
@@ -42,7 +42,7 @@ export const ImgRegister = styled.img`
 `;
 
 export const TextTitleRegister = styled.h1`
-    color: #FFF;
+    color: #B57EDC;
     margin-bottom: 1rem;
 `;
 
@@ -50,33 +50,54 @@ export const FormRegister = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
 `;
 
 export const ContainerInput = styled.div`
     display: flex;
     flex-direction: column;
-    width: 80%;
-`;
-export const LabelRegister = styled.label`
-    color: #FFF;
+    width: 100%;
+    margin-bottom: 1rem;
+    position: relative;
 `;
 
 export const InputRegister = styled.input`
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    height: 32px;
+    background-color: #0e0d0c;
+    color: #444343;
+    font-size: 14px;
+    padding-left: 1rem;
     width: 100%;
     border: none;
-    padding: 0.5rem;
+    border-radius: 4px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    &:focus {
+        color: #757575;
+        outline: none;
+        border: none;
+        border-bottom: 4px solid #B57EDC;
+    }
+
 `;
 export const BtnEnterRegister = styled.button`
-    background-color: #48CBE8;
+    background-color: #81589e;
     border-radius: 10px;
     border: none;
     cursor: pointer;
-    width: 50px;
-    height: 24px;
+    width: 100%;
+    height: 32px;
+    &:hover{
+        background-color: transparent;
+        border: 1px solid #B57EDC;
+        color: #81589e;
+    }
+`;
+
+export const SpanIconPassView = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const ContainerIconPassView = styled.div`
@@ -99,8 +120,21 @@ export const BtnIconPassView = styled.button`
     cursor: pointer;
 `;
 
-export const SpanIconPassView = styled.span`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+export const BtnLink = styled.button`
+    background-color: transparent;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    color: #B57EDC;
 `;
+
+export const ContainerLink = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2rem;
+    width: 50%;
+`;
+

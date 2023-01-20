@@ -25,16 +25,6 @@ export const  ContainerPopUpLogin = styled.div`
     padding: 2rem;
 `;
 
-export const BtnClose = styled.button`
-    position: absolute;
-    background-color: transparent;
-    border: none;
-    outline: 0;
-    cursor: pointer;
-    right: 1rem;
-    top: 1rem;
-    font-size: 20px;
-`;
 
 export const ImgLogin = styled.img`
     height: 50px;

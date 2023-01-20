@@ -3,23 +3,26 @@ import {
     ContainerPopUpRegister,
     TextTitleRegister,
     FormRegister,
-    LabelRegister,
     InputRegister,
     BtnEnterRegister,
-    BtnClose,
     ContainerInput,
-    ContainerIconPassView,
     BtnIconPassView,
     SpanIconPassView,
     IconPassView,
+    ContainerLink,
+    BtnLink,
 } from "./styles";
 
 import IconHide from "../../assets/hide.png";
 import IconView from "../../assets/view.png";
 import { React, useState, useEffect } from "react";
 import axios from "axios";
+import { Marker } from "../Login/styles";
+import { useNavigate } from "react-router-dom"; 
 
-export default function PopUpRegister(onClosed = () => {}) {
+export default function PopUpRegister(onClosed = () => { }) {
+    const navigation = useNavigate();
+    
     const [showPass, setShowPass] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [name, setName] = useState('');
@@ -76,47 +79,64 @@ export default function PopUpRegister(onClosed = () => {}) {
     return (
         <ContainerPageRegister>
             <ContainerPopUpRegister>
-                <BtnClose onClick={onClosed}>X</BtnClose>
                 <TextTitleRegister>Faça seu Cadastro</TextTitleRegister>
                 <FormRegister>
                     <ContainerInput>
-                        <LabelRegister>Nome de Usuário</LabelRegister>
-                        <InputRegister type="text" value={name} onChange={e => setName(e.target.value)} />
-                        <LabelRegister>Nome do Canal</LabelRegister>
-                        <InputRegister type="text" value={channel} onChange={e => setChannel(e.target.value)} />
-                        <LabelRegister>E-mail</LabelRegister>
-                        <InputRegister type="email" value={email} onChange={e => setEmail(e.target.value)} />
-                        <LabelRegister>Senha</LabelRegister>
-                        <ContainerIconPassView>
-                            <InputRegister
-                                type={showPass ? "text" : "password"}
-                                required
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                            />
-                            <SpanIconPassView>
-                                <BtnIconPassView type="button" onClick={handleShowPass}>
-                                    <IconPassView src={showPass ? IconView : IconHide} />
-                                </BtnIconPassView>
-                            </SpanIconPassView>
-                        </ContainerIconPassView>
-                        <LabelRegister>Confirmar a senha</LabelRegister>
-                        <ContainerIconPassView>
-                            <InputRegister
-                                type={showConfirm ? "text" : "password"}
-                                required
-                                value={confirmPass} onChange={e => setConfirmPass(e.target.value)}
-                            />
-                            <SpanIconPassView>
-                                <BtnIconPassView type="button" onClick={handleShowConfirm}>
-                                    <IconPassView src={showConfirm ? IconView : IconHide} />
-                                </BtnIconPassView>
-                            </SpanIconPassView>
-                        </ContainerIconPassView>
-
+                        <InputRegister
+                            placeholder="Digite seu nome de usuário"
+                            type="text"
+                            value={name}
+                            onChange={e => setName(e.target.value)} />
+                    </ContainerInput>
+                    <ContainerInput>
+                    <InputRegister
+                        placeholder="Digite o nome do canal"
+                        type="text"
+                        value={channel}
+                        onChange={e => setChannel(e.target.value)} />
+                    </ContainerInput>
+                    <ContainerInput>
+                    <InputRegister
+                        placeholder="Digite seu e-mail"
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)} />
+                    </ContainerInput>
+                   
+                    <ContainerInput>
+                        <InputRegister
+                            placeholder="Digite sua senha"
+                            type={showPass ? "text" : "password"}
+                            required
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <SpanIconPassView>
+                            <BtnIconPassView type="button" onClick={handleShowPass}>
+                                <IconPassView src={showPass ? IconView : IconHide} />
+                            </BtnIconPassView>
+                        </SpanIconPassView>
+                    </ContainerInput>
+                    <ContainerInput>
+                        <InputRegister
+                            placeholder="Confirme sua senha"
+                            type={showConfirm ? "text" : "password"}
+                            required
+                            value={confirmPass} onChange={e => setConfirmPass(e.target.value)}
+                        />
+                        <SpanIconPassView>
+                            <BtnIconPassView type="button" onClick={handleShowConfirm}>
+                                <IconPassView src={showConfirm ? IconView : IconHide} />
+                            </BtnIconPassView>
+                        </SpanIconPassView>
                     </ContainerInput>
                     <BtnEnterRegister type="submit" onClick={handleSubmit}>Enviar</BtnEnterRegister>
                 </FormRegister>
+                <ContainerLink>
+                    <BtnLink onClick={() => navigation("/")}>Página Inicial</BtnLink>
+                    <Marker> | </Marker>
+                    <BtnLink onClick={() => navigation("/login")}>Entrar</BtnLink>
+                </ContainerLink>
             </ContainerPopUpRegister>
         </ContainerPageRegister>
     );
