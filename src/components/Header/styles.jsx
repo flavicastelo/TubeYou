@@ -58,6 +58,26 @@ export const LupIcon = styled.img`
     right: 2rem;
 `;
 
+export const AdcVideo = styled.button`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    background-color: transparent;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    width: 120px;
+    height: 32px;
+    margin-right: 1rem;
+    color: #B57EDC;
+`;
+
+export const ImgAdcVideo = styled.img`
+    height: 32px;
+`;
+
 export const ContainerLinks = styled.div`
     display: flex;
     flex-direction: row;

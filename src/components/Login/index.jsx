@@ -19,8 +19,9 @@ import { React, useState, useEffect, useRef, useContext } from "react";
 import IconHide from "../../assets/hide.png";
 import IconViewImg from "../../assets/view.png";
 import AuthContext from "../../context/AuthProvider";
-import { useNavigate } from "react-router-dom"; 
-
+import { useNavigate } from "react-router-dom";
+import { isLogged, login } from "../../../utils/auth";
+import api from "../../../utils/api";
 
 export default function PopUpLogin(onClosed) {
     const navigation = useNavigate();
@@ -28,11 +29,10 @@ export default function PopUpLogin(onClosed) {
     const { setAuth } = useContext(AuthContext);
     const emailRef = useRef();
     const erroRef = useRef();
-    const [accessToken, setAccessToken] = useState('');
+    const [token, setToken] = useState('');
     const [showPass, setShowPass] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [success, setSuccess] = useState(false);
     const [erroMsg, setErroMsg] = useState('');
 
     useEffect(() => {
@@ -54,14 +54,20 @@ export default function PopUpLogin(onClosed) {
             email: email,
             password: password,
         }
+
         axios.post('http://localhost:3000/api/auth/login', data,
             {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true
             }
         ).then(function (response) {
-            setAccessToken(response?.data?.accessToken);
-            console.log(response);
+            setAuth({ email, password, token });
+            setEmail('');
+            setPassword('');
+            login(response.data.token);
+            localStorage.setItem('_id', response.data.response._id);
+            navigation("/");
+            window.location.reload();
         }).catch(function (error) {
             console.log(email, password);
             if (!error?.response) {
@@ -76,60 +82,51 @@ export default function PopUpLogin(onClosed) {
             erroRef.current.focus();
         });
 
-        setAuth({ email, password, accessToken });
-        setEmail('');
-        setPassword('');
-        setSuccess(true);
-
 
     };
-
     return (
         <>
-            {success ? (<h1>SUCESSO!</h1>) : (
-
-                <ContainerPageLogin>
-                    <ContainerPopUpLogin>
-                        <TextTitleLogin>Faça seu Login</TextTitleLogin>
-                        <FormLogin>
-                            <ContainerInput>
-                                <InputLogin
-                                    placeholder="Digite seu e-mail"
-                                    name="email"
-                                    type="text"
-                                    value={email}
-                                    ref={emailRef}
-                                    onChange={e => setEmail(e.target.value)}
-                                    required
-                                />
-                            </ContainerInput>
-                            <ContainerInput>
-                                <InputLogin
-                                    placeholder="Digite sua senha"
-                                    name="password"
-                                    type={showPass ? "text" : "password"}
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                    required
-                                />
-                                <SpanIconView>
-                                    <BtnIconView type="button" onClick={handleShowPass}>
-                                        <IconView src={showPass ? IconViewImg : IconHide} />
-                                    </BtnIconView>
-                                </SpanIconView>
-                            </ContainerInput>
-                            <BtnEnterLogin type="submit" onClick={handleSubmit}>Enviar</BtnEnterLogin>
-                        </FormLogin>
-                        <ForgotPass>Esqueci minha senha</ForgotPass>
-                        <ContainerLinkPage>
+            <ContainerPageLogin>
+                <ContainerPopUpLogin>
+                    <TextTitleLogin>Faça seu Login</TextTitleLogin>
+                    <FormLogin>
+                        <ContainerInput>
+                            <InputLogin
+                                placeholder="Digite seu e-mail"
+                                name="email"
+                                type="text"
+                                value={email}
+                                ref={emailRef}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                            />
+                        </ContainerInput>
+                        <ContainerInput>
+                            <InputLogin
+                                placeholder="Digite sua senha"
+                                name="password"
+                                type={showPass ? "text" : "password"}
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                required
+                            />
+                            <SpanIconView>
+                                <BtnIconView type="button" onClick={handleShowPass}>
+                                    <IconView src={showPass ? IconViewImg : IconHide} />
+                                </BtnIconView>
+                            </SpanIconView>
+                        </ContainerInput>
+                        <BtnEnterLogin type="submit" onClick={handleSubmit}>Enviar</BtnEnterLogin>
+                    </FormLogin>
+                    <ForgotPass>Esqueci minha senha</ForgotPass>
+                    <ContainerLinkPage>
                         <LinkPage onClick={() => navigation("/")}>Página Inicial</LinkPage>
                         <Marker> | </Marker>
                         <LinkPage onClick={() => navigation("/register")}>Cadastre-se</LinkPage>
-                        </ContainerLinkPage>
-                        
+                    </ContainerLinkPage>
+                </ContainerPopUpLogin>
+            </ContainerPageLogin>
 
-                    </ContainerPopUpLogin>
-                </ContainerPageLogin>)}
         </>
     );
 }

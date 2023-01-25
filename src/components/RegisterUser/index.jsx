@@ -20,7 +20,7 @@ import axios from "axios";
 import { Marker } from "../Login/styles";
 import { useNavigate } from "react-router-dom"; 
 
-export default function PopUpRegister(onClosed = () => { }) {
+export default function PopUpRegister() {
     const navigation = useNavigate();
     
     const [showPass, setShowPass] = useState(false);

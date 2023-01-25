@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerPageRegister = styled.div`
+export const ContainerPageVideo = styled.div`
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -12,7 +12,7 @@ export const ContainerPageRegister = styled.div`
     align-items: center;
 `;
 
-export const ContainerPopUpRegister = styled.div`
+export const ContainerPopUpVideo = styled.div`
     position: relative;
     width: 30%;
     height: auto;
@@ -25,35 +25,19 @@ export const ContainerPopUpRegister = styled.div`
     padding: 2rem;
 `;
 
-export const BtnClose = styled.button`
-    position: absolute;
-    background-color: transparent;
-    border: none;
-    outline: 0;
-    cursor: pointer;
-    right: 1rem;
-    top: 1rem;
-    font-size: 20px;
-    color: #48CBE8;
-`;
-
-export const ImgRegister = styled.img`
-    height: 50px;
-`;
-
-export const TextTitleRegister = styled.h1`
+export const TextTitleVideo = styled.h1`
     color: #B57EDC;
     margin-bottom: 1rem;
 `;
 
-export const FormRegister = styled.form`
+export const FormVideo = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
 `;
 
-export const ContainerInput = styled.div`
+export const ContainerInputVideo = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -61,7 +45,7 @@ export const ContainerInput = styled.div`
     position: relative;
 `;
 
-export const InputRegister = styled.input`
+export const InputVideo = styled.input`
     background-color: #0e0d0c;
     color: #444343;
     font-size: 14px;
@@ -80,7 +64,7 @@ export const InputRegister = styled.input`
     }
 
 `;
-export const BtnEnterRegister = styled.button`
+export const BtnEnterVideo = styled.button`
     background-color: #81589e;
     border-radius: 10px;
     border: none;

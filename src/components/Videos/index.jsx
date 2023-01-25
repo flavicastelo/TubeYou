@@ -7,6 +7,7 @@ import {
 } from "./styles";
 
 import HeaderComponent from "../Header";
+import RegisterVideo from "../RegisterVideo";
 
 export default function Videos() {
   
@@ -16,7 +17,7 @@ export default function Videos() {
       <Main>
         <Div></Div>
         <Body>
-          VÍDEOS
+          <RegisterVideo />
         </Body>
       </Main>
     </Container>
