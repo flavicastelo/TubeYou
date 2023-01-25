@@ -1,6 +1,5 @@
 import React from "react";
-import PopUpRegister from "../components/Register";
-
+import PopUpRegister from "../components/RegisterUser";
 export default function RegisterPage() {
   return (
     <PopUpRegister />
