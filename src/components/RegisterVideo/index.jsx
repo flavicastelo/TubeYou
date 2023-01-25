@@ -1,4 +1,4 @@
-import { BtnEnterVideo, ContainerInputVideo, ContainerPageVideo, ContainerPopUpVideo, FormVideo, InputVideo, TextTitleVideo } from "./styles";
+import { BtnEnterVideo, BtnInicio, ContainerInputVideo, ContainerPageVideo, ContainerPopUpVideo, FormVideo, InputVideo, TextTitleVideo } from "./styles";
 
 import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
@@ -85,6 +85,7 @@ export default function RegisterVideo() {
                     </ContainerInputVideo>
                     <BtnEnterVideo type="submit" onClick={handleSubmit} >Enviar</BtnEnterVideo>
                 </FormVideo>
+                <BtnInicio onClick={ () => navigation("/")}>Voltar ao Início</BtnInicio>
             </ContainerPopUpVideo>
 
         </ContainerPageVideo>
