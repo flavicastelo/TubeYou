@@ -36,7 +36,10 @@ export default function PopUpLogin(onClosed) {
     const [erroMsg, setErroMsg] = useState('');
 
     useEffect(() => {
-        emailRef.current.focus();
+        if(emailRef.current){
+            emailRef.current.focus();
+        }
+        
     }, []);
     useEffect(() => {
         setErroMsg('');
@@ -65,10 +68,10 @@ export default function PopUpLogin(onClosed) {
             setEmail('');
             setPassword('');
             login(response.data.token);
-            localStorage.setItem('_id', response.data.response._id);
+            localStorage.setItem('_id', response.data.user._id);
             navigation("/");
             window.location.reload();
-            console.log(response.data.response._id);
+            console.log(response.data.user._id);
         }).catch(function (error) {
             console.log(email, password);
             if (!error?.response) {
@@ -80,7 +83,7 @@ export default function PopUpLogin(onClosed) {
             } else {
                 setErroMsg('Login Failed!');
             }
-            erroRef.current.focus();
+            // erroRef.current.focus();
         });
 
 
