@@ -3,8 +3,7 @@ import { BtnEnterVideo, BtnInicio, ContainerInputVideo, ContainerPageVideo, Cont
 import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { isLogged } from "../../../utils/auth";
-import api from "../../../utils/api";
+ import api from "../../../utils/api";
 
 export default function RegisterVideo() {
     const navigation = useNavigate();
@@ -30,11 +29,11 @@ export default function RegisterVideo() {
             description: description,
             thumbnail: thumbnail,
             idUser: idUser,
-
+            
         }
 
         try {
-            const response = await api.post("http://localhost:3000/api/videos", data, `Bearer ${token}`);
+            const response = await api.post("http://localhost:3000/api/videos/register", data, `Bearer ${token}`);
             console.log(response.data);
         } catch (error) {
             console.log(error);

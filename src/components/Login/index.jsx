@@ -68,6 +68,7 @@ export default function PopUpLogin(onClosed) {
             localStorage.setItem('_id', response.data.response._id);
             navigation("/");
             window.location.reload();
+            console.log(response.data.response._id);
         }).catch(function (error) {
             console.log(email, password);
             if (!error?.response) {
