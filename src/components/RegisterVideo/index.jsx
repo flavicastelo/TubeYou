@@ -1,10 +1,9 @@
-import { BtnEnterVideo, ContainerInputVideo, ContainerPageVideo, ContainerPopUpVideo, FormVideo, InputVideo, TextTitleVideo } from "./styles";
+import { BtnEnterVideo, BtnInicio, ContainerInputVideo, ContainerPageVideo, ContainerPopUpVideo, FormVideo, InputVideo, TextTitleVideo } from "./styles";
 
 import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { isLogged } from "../../../utils/auth";
-import api from "../../../utils/api";
+ import api from "../../../utils/api";
 
 export default function RegisterVideo() {
     const navigation = useNavigate();
@@ -30,11 +29,11 @@ export default function RegisterVideo() {
             description: description,
             thumbnail: thumbnail,
             idUser: idUser,
-
+            
         }
 
         try {
-            const response = await api.post("http://localhost:3000/api/videos", data, `Bearer ${token}`);
+            const response = await api.post("http://localhost:3000/api/videos/register", data, `Bearer ${token}`);
             console.log(response.data);
         } catch (error) {
             console.log(error);
@@ -85,6 +84,7 @@ export default function RegisterVideo() {
                     </ContainerInputVideo>
                     <BtnEnterVideo type="submit" onClick={handleSubmit} >Enviar</BtnEnterVideo>
                 </FormVideo>
+                <BtnInicio onClick={ () => navigation("/")}>Voltar ao Início</BtnInicio>
             </ContainerPopUpVideo>
 
         </ContainerPageVideo>

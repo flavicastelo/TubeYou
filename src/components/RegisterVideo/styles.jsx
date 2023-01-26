@@ -28,6 +28,7 @@ export const ContainerPopUpVideo = styled.div`
 export const TextTitleVideo = styled.h1`
     color: #B57EDC;
     margin-bottom: 1rem;
+    font-size: 24px;
 `;
 
 export const FormVideo = styled.form`
@@ -111,6 +112,15 @@ export const BtnLink = styled.button`
     border: none;
     cursor: pointer;
     color: #B57EDC;
+`;
+
+export const BtnInicio = styled.button`
+    background-color: transparent;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    color: #B57EDC;
+    margin-top: 1rem;
 `;
 
 export const ContainerLink = styled.div`

@@ -11,14 +11,17 @@ export const Main = styled.main`
 `;
 
 export const Body = styled.section`
-  background-color: #515151; 
+  display: flex;
+  justify-content: space-between;
+  background-color: #292828; 
   width: 100%;
   height: 100vh;
-  padding: 1rem;
+  padding: 2rem;
+  align-self: center;
 `;
 
 export const Div = styled.div`
-   background-color: #0e0d0c;
+    background-color: #0e0d0c;
     display: flex;
     width: 3.8rem;
     height: 100vh;
