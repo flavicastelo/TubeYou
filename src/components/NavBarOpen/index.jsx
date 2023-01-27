@@ -24,7 +24,7 @@ export default function NavBarOpen() {
                 </ItemBtnOpen>
             </ContainerItemOpen>
             <ContainerItemOpen>
-                <ItemBtnOpen onClick={() => navigation("/videos")}>
+                <ItemBtnOpen onClick={() => navigation("/videos/list")}>
                     <VideosImgOpen src={VideosOpen} alt="Icone de videos" />
                     <TextItemOpen>Vídeos</TextItemOpen>
                 </ItemBtnOpen>

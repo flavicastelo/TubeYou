@@ -7,7 +7,7 @@ import {
 } from "./styles";
 
 import HeaderComponent from "../Header";
-import CardVideo from "../CardVideo";
+import CardVideoRecent from "../CardVideoRecent";
 
 export default function Home() {
   
@@ -17,7 +17,7 @@ export default function Home() {
       <Main>
         <Div></Div>
         <Body>
-          <CardVideo />
+          <CardVideoRecent />
         </Body>
       </Main>
     </Container>
