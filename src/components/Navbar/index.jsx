@@ -24,7 +24,7 @@ export default function NavBar() {
                 </ItemBtn>
             </ContainerItem>
             <ContainerItem>
-                <ItemBtn onClick={() => navigation("/videos")}>
+                <ItemBtn onClick={() => navigation("/videos/list")}>
                     <VideosImg src={Videos} alt="Icone de videos" />
                     <TextItem>Vídeos</TextItem>
                 </ItemBtn>

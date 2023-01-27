@@ -5,64 +5,59 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 
-export default function CardVideo() {
-  const [videos, setVideos] = useState([]);
-  const [channel, setChannel] = useState('');
+export default function CardVideo({video}) {
+// //   const [videos, setVideos] = useState([]);
+// //   const [channel, setChannel] = useState('');
 
-  const getVideos = async () => {
-    const token = localStorage.getItem('token');
+// //   const getVideos = async () => {
+// //     const token = localStorage.getItem('token');
 
-    try {
-      const response = await api.get("/videos", `Bearer ${token}`);
-      const data = response.data;
-      setVideos(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  useEffect(() => {
-    getVideos();
-  }, []);
+// //     try {
+// //       const response = await api.get("/videos", `Bearer ${token}`);
+// //       const data = response.data;
+// //       setVideos(data);
+// //     } catch (error) {
+// //       console.log(error);
+// //     }
+// //   }
+// //   useEffect(() => {
+// //     getVideos();
+// //   }, []);
 
-  const getChannel = async () => {
-    const token = localStorage.getItem('token');
-    const id = [];
+// //   const getChannel = async () => {
+// //     const token = localStorage.getItem('token');
+// //     const id = [];
 
-    videos.map((video) => {
-      id.push(video.idUser);
-    });
+// //     videos.map((video) => {
+// //       id.push(video.idUser);
+// //     });
 
-    videos.map(async (video) => {
-      if (id === video.idUser) {
-        try {
-          const response = await api.get(`/users/${id}`, `Bearer ${token}`);
-          const data = response.data;
-          setChannel(data);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    })
-
-
-  }
-  useEffect(() => {
-    getChannel();
-  }, []);
+// //     videos.map(async (video) => {
+// //       if (id === video.idUser) {
+// //         try {
+// //           const response = await api.get(`/users/${id}`, `Bearer ${token}`);
+// //           const data = response.data;
+// //           setChannel(data);
+// //         } catch (error) {
+// //           console.log(error);
+// //         }
+// //       }
+// //     })
 
 
-  //inverter o array para exibir primeiro os ultimos adicionados
-  let videosRecents = [];
-  for (let index = 0; index < videos.length; index++) {
-    videosRecents.push(videos[index]);
-  }
-  videosRecents.reverse();
+// //   }
+// //   useEffect(() => {
+// //     getChannel();
+// //   }, []);
 
-  //RESOLVER BUG: MENOS DE 3 VIDEOS QUEBRA
-  let videosHome = [];
-  for (let i = 0; i < 3; i++) {
-    videosHome.push(videosRecents[i]);
-  }
+
+//   //inverter o array para exibir primeiro os ultimos adicionados
+//   let videosRecents = [];
+//   for (let index = 0; index < videos.length; index++) {
+//     videosRecents.push(videos[index]);
+//   }
+//   videosRecents.reverse();
+
 
   function dateFormat(createdAt) {
     var data = new Date(createdAt),
@@ -75,23 +70,23 @@ export default function CardVideo() {
   }
   return (
     <>
-      {videos.length === 0 ? <h1>Carregando...</h1> : (
+      {video.length === 0 ? <h1>Carregando...</h1> : (
 
-        videosHome.map((video) => (
+        
           <ContainerCard key={video._id}>
             <Thumbnail src={video.thumbnail} />
             <TitleVideo>
               {video.title}
             </TitleVideo>
             <ChannelName>
-              {channel.channel}
+             Canal
             </ChannelName>
             <ContainerInfo>
               <Views>5 visualizações</Views>
               <DatePost>Postado em {dateFormat(video.createdAt)}</DatePost>
             </ContainerInfo>
           </ContainerCard>
-        ))
+        
       )}
 
     </>
