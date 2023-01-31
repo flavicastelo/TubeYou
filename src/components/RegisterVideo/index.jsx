@@ -3,7 +3,7 @@ import { BtnEnterVideo, BtnInicio, ContainerInputVideo, ContainerPageVideo, Cont
 import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
- import api from "../../../utils/api";
+import api from "../../../utils/api";
 
 export default function RegisterVideo() {
     const navigation = useNavigate();
@@ -29,7 +29,7 @@ export default function RegisterVideo() {
             description: description,
             thumbnail: thumbnail,
             idUser: idUser,
-            
+
         }
 
         try {
@@ -84,7 +84,7 @@ export default function RegisterVideo() {
                     </ContainerInputVideo>
                     <BtnEnterVideo type="submit" onClick={handleSubmit} >Enviar</BtnEnterVideo>
                 </FormVideo>
-                <BtnInicio onClick={ () => navigation("/")}>Voltar ao Início</BtnInicio>
+                <BtnInicio onClick={() => navigation("/")}>Voltar ao Início</BtnInicio>
             </ContainerPopUpVideo>
 
         </ContainerPageVideo>

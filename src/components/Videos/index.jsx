@@ -15,6 +15,7 @@ export default function Videos() {
             const response = await api.get("/videos", `Bearer ${token}`);
             const data = response.data;
             setVideos(data);
+            
         } catch (error) {
             console.log(error);
         }
@@ -22,8 +23,9 @@ export default function Videos() {
     useEffect(() => {
         getVideos();
     }, []);
-
-
+    //criar um condicional para testar se o id passado é o mesmo do video e setar o id no localStorage
+    
+    
     return (
         <ContainerVideos>
             <HeaderComponent />
