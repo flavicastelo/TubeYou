@@ -2,18 +2,28 @@ import { BodyExpanded, ChannelExpanded, ContainerExpanded, CountLike, DatePostEx
 import React, { useState } from "react";
 import api from "../../../utils/api";
 import { useEffect } from "react";
-import like from "../../assets/like.png";
+import likeImg from "../../assets/like.png";
 import HeaderComponent from "../Header";
 
 export default function ExpandedVideo() {
     const [videos, setVideos] = useState([]);
+    const [counter, setCounter] = useState(0);
+    const [viewsCount, setViewsCount] = useState(0);
+    const [idUser, setIdUser] = useState('');
+    const [channel, setChannel] = useState('');
+    const [url, setUrl] = useState('');
 
     const getVideo = async () => {
-        const id = localStorage.setItem("idVideo", id);
+        const id = localStorage.getItem("idVideo");
         try {
             const response = await api.get(`/videos/${id}`);
             const data = response.data;
             setVideos(data);
+            setCounter(data.like);
+            localStorage.setItem("idUser", data.idUser);
+            setViewsCount(data.views + 1);
+            putViews();
+            setUrl(response.data.url.split("=")[1]);
         } catch (error) {
             console.log(error);
         }
@@ -22,6 +32,58 @@ export default function ExpandedVideo() {
         getVideo();
     }, []);
 
+    useEffect(() =>{
+        console.log("urlUseEffect",url);
+    }, [url]);
+
+    const getChannel = async () => {
+        const token = localStorage.getItem('token');
+        const id = localStorage.getItem('idUser');
+        try {
+            const response = await api.get(`/users/${id}`);
+            const data = response.data;
+            setChannel(data.channel);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getChannel();
+    }, []);
+
+    const putViews = async () => {
+        const data = {
+            views: viewsCount,
+        }
+        const id = localStorage.getItem('idVideo');
+        const token = localStorage.getItem('token');
+        try {
+            const response = await api.put(`videos/update/${id}`, data, `Bearer ${token}`);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // useEffect(() => {
+    //     putViews();
+    // }, []);
+
+    const setLike = async () => {
+        const data = {
+            like: counter + 1,
+        }
+        console.log(data);
+        const id = localStorage.getItem("idVideo");
+        const token = localStorage.getItem('token');
+        try {
+            const response = await api.put(`/videos/update/${id}`, data, `Bearer ${token}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        setLike();
+    }, []);
 
     function dateFormat(createdAt) {
         var data = new Date(createdAt),
@@ -33,26 +95,33 @@ export default function ExpandedVideo() {
         return diaF + "/" + mesF + "/" + anoF;
     }
     console.log(videos);
+
+    function countLikes() {
+        setCounter(counter + 1);
+        console.log("contador: ", counter);
+        setLike();
+    }
     return (
         <ContainerExpanded>
             <HeaderComponent />
             <MainExpanded>
                 <DivExpanded></DivExpanded>
+            
                 {videos ? (
                     <BodyExpanded>
-                        <VideoExpanded src="https://www.youtube.com/embed/ZLtBdpwg8tI" title="Curso React: Trabalhando com props - #05" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></VideoExpanded>
+                        <VideoExpanded src={url && `https://www.youtube.com/embed/${url}`} allowfullscreen></VideoExpanded>
                         <DivTitle>
-                            <TitleExpanded>Titulo do video</TitleExpanded>
-                            <LikeBtn><ImgLike src={like} /><CountLike>60</CountLike></LikeBtn>
+                            <TitleExpanded>{videos.title}</TitleExpanded>
+                            <LikeBtn onClick={() => { countLikes() }}><ImgLike src={likeImg} /><CountLike>{counter}</CountLike></LikeBtn>
                         </DivTitle>
-                        <ChannelExpanded>Nome do Canal</ChannelExpanded>
+                        <ChannelExpanded>{channel}</ChannelExpanded>
                         <DivInfos>
-                            <ViewsExpanded>5 visualizações</ViewsExpanded>
-                            <DatePostExpanded>Postado em xx/xx/xx</DatePostExpanded>
+                            <ViewsExpanded>{videos.views} visualizações</ViewsExpanded>
+                            <DatePostExpanded>Postado em {dateFormat(videos.createdAt)}</DatePostExpanded>
                         </DivInfos>
                         <DescriptionDiv>
-                        <InputMostrarMais type="radio" name="mostrarmais" id="m1" />
-                            <DescriptionTxt>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci deserunt culpa ex maiores alias perspiciatis modi dolor impedit hic consequuntur eaque cupiditate, nostrum optio, ipsum labore odit quia, exercitationem itaque? Maiores accusantium explicabo eveniet obcaecati necessitatibus neque beatae similique molestiae repellat optio. Minima delectus quod accusamus dignissimos pariatur id ratione recusandae sunt nostrum. Fugit totam deserunt, quos suscipit eveniet id deleniti officiis soluta? Harum dolores voluptate repellendus sed odit sit itaque, obcaecati libero dolorem, inventore fugiat quae neque veniam quidem dolorum maxime exercitationem mollitia suscipit. Excepturi nostrum natus voluptas odit dicta amet molestiae labore. Corrupti fugiat id vitae aliquid.</DescriptionTxt>
+                            <InputMostrarMais type="radio" name="mostrarmais" id="m1" />
+                            <DescriptionTxt>{videos.description}</DescriptionTxt>
                             <LabelMostrarMais for="m1">Mostrar mais</LabelMostrarMais>
                         </DescriptionDiv>
                     </BodyExpanded>

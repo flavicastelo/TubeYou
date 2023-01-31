@@ -1,63 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../../utils/api";
 import { ChannelName, ContainerCard, ContainerInfo, DatePost, Thumbnail, TitleVideo, Views } from "./styles";
 
 
 export default function CardVideo({ video }) {
   const navigation = useNavigate();
-  // //   const [videos, setVideos] = useState([]);
-  // //   const [channel, setChannel] = useState('');
-
-  // //   const getVideos = async () => {
-  // //     const token = localStorage.getItem('token');
-
-  // //     try {
-  // //       const response = await api.get("/videos", `Bearer ${token}`);
-  // //       const data = response.data;
-  // //       setVideos(data);
-  // //     } catch (error) {
-  // //       console.log(error);
-  // //     }
-  // //   }
-  // //   useEffect(() => {
-  // //     getVideos();
-  // //   }, []);
-
-  // //   const getChannel = async () => {
-  // //     const token = localStorage.getItem('token');
-  // //     const id = [];
-
-  // //     videos.map((video) => {
-  // //       id.push(video.idUser);
-  // //     });
-
-  // //     videos.map(async (video) => {
-  // //       if (id === video.idUser) {
-  // //         try {
-  // //           const response = await api.get(`/users/${id}`, `Bearer ${token}`);
-  // //           const data = response.data;
-  // //           setChannel(data);
-  // //         } catch (error) {
-  // //           console.log(error);
-  // //         }
-  // //       }
-  // //     })
 
 
-  // //   }
-  // //   useEffect(() => {
-  // //     getChannel();
-  // //   }, []);
-
-
-  //   //inverter o array para exibir primeiro os ultimos adicionados
-  //   let videosRecents = [];
-  //   for (let index = 0; index < videos.length; index++) {
-  //     videosRecents.push(videos[index]);
-  //   }
-  //   videosRecents.reverse();
-
-
+  function click(video) {
+    navigation("/videos/expanded");
+    localStorage.setItem("idVideo", video._id);
+  }
 
   function dateFormat(createdAt) {
     var data = new Date(createdAt),
@@ -73,7 +27,7 @@ export default function CardVideo({ video }) {
       {video.length === 0 ? <h1>Carregando...</h1> : (
 
 
-        <ContainerCard onClick={() => navigation("/videos/expanded")} key={video._id}>
+        <ContainerCard onClick={() => click(video)} key={video._id}>
           <Thumbnail src={video.thumbnail} />
           <TitleVideo>
             {video.title}
@@ -82,7 +36,7 @@ export default function CardVideo({ video }) {
             Canal
           </ChannelName>
           <ContainerInfo>
-            <Views>5 visualizações</Views>
+            <Views>{video.views} visualizações</Views>
             <DatePost>Postado em {dateFormat(video.createdAt)}</DatePost>
           </ContainerInfo>
         </ContainerCard>
