@@ -55,10 +55,11 @@ export default function HeaderComponent() {
           <Login>Entrar</Login>
           <ImgLogin src={IconLogin} />
         </LoginBtn>}
-        
-        <RegisterBtn onClick={() => navigation("/register")}>
+        {isLogged ?  null: <RegisterBtn onClick={() => navigation("/register")}>
           <Register>Cadastre-se</Register>
-        </RegisterBtn>
+        </RegisterBtn> 
+        }
+        
 
       </ContainerLinks>
 
