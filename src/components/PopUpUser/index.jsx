@@ -12,7 +12,7 @@ export default function PopUpUser({isOpen, user}) {
                      <TxtPopUp>{user.name}</TxtPopUp>
                     <TxtPopUp>@{user.channel}</TxtPopUp>
                     <LinkVideos onClick={() => navigate("/videos/user")}>Seus vídeos</LinkVideos>
-                    <BtnEdit >Editar informações do canal</BtnEdit>
+                    <BtnEdit onClick={() => navigate("/user/edit")}>Editar informações do canal</BtnEdit>
                     </>
                    
                     

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../utils/api";
-import { ChannelName, ContainerCard, ContainerInfo, DatePost, Thumbnail, TitleVideo, Views } from "./styles";
+import { ChannelName, ContainerCard, ContainerInfo, DatePost, DivChannel, ImgChannel, Thumbnail, TitleVideo, Views } from "./styles";
 
 
 export default function CardVideo({ video }) {
   const navigation = useNavigate();
   const [channel, setChannel] = useState('');
+  const [photo, setPhoto] = useState('');
 
 
   function click(video) {
@@ -27,16 +28,17 @@ export default function CardVideo({ video }) {
   const getChannel = async () => {
     const id = video.idUser;
     try {
-        const response = await api.get(`/users/${id}`);
-        const data = response.data;
-        setChannel(data.channel);
+      const response = await api.get(`/users/${id}`);
+      const data = response.data;
+      setChannel(data.channel);
+      setPhoto(data.photo);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
-useEffect(() => {
+  }
+  useEffect(() => {
     getChannel();
-}, []);
+  }, []);
 
   return (
     <>
@@ -46,9 +48,12 @@ useEffect(() => {
           <TitleVideo>
             {video.title}
           </TitleVideo>
-          <ChannelName>
-            {channel}
-          </ChannelName>
+          <DivChannel>
+            <ImgChannel src={photo} />
+            <ChannelName>
+              {channel}
+            </ChannelName>
+          </DivChannel>
           <ContainerInfo>
             <Views>{video.views} visualizações</Views>
             <DatePost>Postado em {dateFormat(video.createdAt)}</DatePost>
