@@ -22,7 +22,7 @@ export const DivVideos = styled.div`
 
 export const BodyVideos = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     background-color: #292828; 
     width: 100%;
     min-height: 100vh;

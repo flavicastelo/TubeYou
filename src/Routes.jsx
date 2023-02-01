@@ -7,6 +7,7 @@ import PrivateRoute from "../utils/PrivateRoute";
 import RegisterVideoPage from "./pages/RegisterVideoPage";
 import VideosPage from "./pages/VideosPage";
 import ExpandedVideo from "./components/ExpandedVideo";
+import VideosUser from "./components/VideosUser";
 
 export function AppRoutes() {
   return (
@@ -14,6 +15,7 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/videos/list" element={<VideosPage />} />
+        <Route path="/videos/user" element={<VideosUser />} />
         <Route path={"/videos/expanded"} element={<ExpandedVideo />} />
         <Route path="/videos" element={<PrivateRoute redirectTo="/login"><RegisterVideoPage/></PrivateRoute>} />
         <Route path="/about" element={<AboutPage />} />
