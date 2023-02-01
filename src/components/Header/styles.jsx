@@ -68,7 +68,6 @@ export const AdcVideo = styled.button`
     outline: 0;
     cursor: pointer;
     border: none;
-    width: 120px;
     height: 32px;
     margin-right: 1rem;
     color: #B57EDC;
@@ -139,5 +138,17 @@ export const Main = styled.main`
 export const Body = styled.section`
   background-color: #515151; 
   width: 100%;
+`;
+
+export const BtnUser = styled.button`
+    background-color: transparent;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    color: #B57EDC;
+`;
+
+export const Imguser = styled.img`
+    width: 32px;
 `;
 
