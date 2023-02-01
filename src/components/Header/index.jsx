@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Header,
   Logo,
@@ -14,7 +14,9 @@ import {
   ContainerLinks,
   ImgLogin,
   AdcVideo,
-  ImgAdcVideo
+  ImgAdcVideo,
+  Imguser,
+  BtnUser,
 } from "./styles";
 
 import LogoImg from "../../assets/logo.png";
@@ -24,17 +26,35 @@ import IconLogin from "../../assets/loginIcon.png";
 import MenuHamburger from "../MenuHamburguer";
 import { isLogged, logout } from "../../../utils/auth";
 import AdcVideoImg from "../../assets/adc-video.png";
+import UserImg from "../../assets/user.png";
+import api from "../../../utils/api";
+import PopUpUser from "../PopUpUser";
 
 export default function HeaderComponent() {
   const navigation = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState('');
 
   const handleLogout = () => {
     logout();
     navigation("/");
     console.log(isLogged);
     window.location.reload();
-}
+  }
+  
+  const getUser = async () => {
+    const id = localStorage.getItem("_id");
+    try {
+      const response =  await api.get(`users/${id}`);
+      const data = response.data;
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <Header>
@@ -49,17 +69,20 @@ export default function HeaderComponent() {
           <LupIcon src={Lup} />
         </LupBtn>
       </FormSearch>
-        {isLogged ? <AdcVideo onClick={ () => navigation("/videos")}><ImgAdcVideo src={AdcVideoImg} /></AdcVideo> : null}
       <ContainerLinks>
+        {isLogged ? <AdcVideo onClick={() => navigation("/videos")}><ImgAdcVideo src={AdcVideoImg} /></AdcVideo> : null}
+        {isLogged ? <BtnUser onClick={() => setIsOpen(!isOpen)}><Imguser src={user.photo ? user.photo : UserImg} /></BtnUser> : null}
+        <PopUpUser isOpen={isOpen} user={user}/>
         {isLogged ? <LoginBtn onClick={handleLogout}>Sair</LoginBtn> : <LoginBtn onClick={() => navigation("/login")}>
           <Login>Entrar</Login>
           <ImgLogin src={IconLogin} />
         </LoginBtn>}
-        {isLogged ?  null: <RegisterBtn onClick={() => navigation("/register")}>
-          <Register>Cadastre-se</Register>
-        </RegisterBtn> 
+        {isLogged ?
+          null : <RegisterBtn onClick={() => navigation("/register")}>
+            <Register>Cadastre-se</Register>
+          </RegisterBtn>
         }
-        
+
 
       </ContainerLinks>
 
