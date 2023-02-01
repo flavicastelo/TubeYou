@@ -23,8 +23,6 @@ export default function Videos() {
     useEffect(() => {
         getVideos();
     }, []);
-    //criar um condicional para testar se o id passado é o mesmo do video e setar o id no localStorage
-    
     
     return (
         <ContainerVideos>
@@ -32,7 +30,7 @@ export default function Videos() {
             <MainVideos>
                 <DivVideos></DivVideos>
                 <BodyVideos>
-                    {videos.length === 0 ? <h1>Carregando...</h1> : (
+                    {videos.length === 0 ? <h1>Sem vídeos no momento</h1> : (
                         videos.map((video) => {
                             return <CardVideo video={video} />
                         })
