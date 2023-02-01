@@ -44,8 +44,14 @@ export const ChannelName = styled.p`
     line-height: 16px;
     color: #1f1e1e;
     text-align: left;
-    align-self: flex-start;
     margin-left: 0.5rem;
+`;
+
+export const DivChannel = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: start;
 `;
 
 export const Views = styled.p`
@@ -66,3 +72,9 @@ export const DatePost = styled.p`
     margin-right: 0.5rem;
 `;
 
+export const ImgChannel = styled.img`
+    width: 32px;
+    height: 32px;
+    border: 1px solid #b57edc;
+    border-radius: 50%;
+`;

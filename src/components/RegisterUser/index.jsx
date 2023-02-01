@@ -30,6 +30,7 @@ export default function PopUpRegister() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
+    const [photo, setPhoto] = useState('');
     const [passVerify, setPassVerify] = useState(false);
 
     useEffect(() => {
@@ -64,6 +65,7 @@ export default function PopUpRegister() {
             channel: channel,
             email: email,
             password: password,
+            photo: photo,
         }
         if (passVerify) {
             axios.post('http://localhost:3000/api/register', data).then(function (response) {
@@ -73,6 +75,7 @@ export default function PopUpRegister() {
             })
 
         }
+        navigation("/");
     };
 
 
@@ -129,6 +132,13 @@ export default function PopUpRegister() {
                                 <IconPassView src={showConfirm ? IconView : IconHide} />
                             </BtnIconPassView>
                         </SpanIconPassView>
+                    </ContainerInput>
+                    <ContainerInput>
+                        <InputRegister
+                            placeholder="Adicione a url da sua foto"
+                            type="text"
+                            value={photo}
+                            onChange={e => setPhoto(e.target.value)} />
                     </ContainerInput>
                     <BtnEnterRegister type="submit" onClick={handleSubmit}>Enviar</BtnEnterRegister>
                 </FormRegister>
