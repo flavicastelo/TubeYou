@@ -1,7 +1,9 @@
 import {React, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {  BtnEdit, ContainerPage, ContainerPopUp, LinkVideos, TxtPopUp } from "./styles";
 
 export default function PopUpUser({isOpen, user}) {
+    const navigate = useNavigate();
     return(isOpen) ? (
         <ContainerPage>
             <ContainerPopUp>
@@ -9,8 +11,8 @@ export default function PopUpUser({isOpen, user}) {
                     <>
                      <TxtPopUp>{user.name}</TxtPopUp>
                     <TxtPopUp>@{user.channel}</TxtPopUp>
-                    <LinkVideos>Seus vídeos</LinkVideos>
-                    <BtnEdit>Editar informações do canal</BtnEdit>
+                    <LinkVideos onClick={() => navigate("/videos/user")}>Seus vídeos</LinkVideos>
+                    <BtnEdit >Editar informações do canal</BtnEdit>
                     </>
                    
                     
