@@ -6,6 +6,7 @@ import { ChannelName, ContainerCard, ContainerInfo, DatePost, Thumbnail, TitleVi
 
 export default function CardVideo({ video }) {
   const navigation = useNavigate();
+  const [channel, setChannel] = useState('');
 
 
   function click(video) {
@@ -22,18 +23,31 @@ export default function CardVideo({ video }) {
       anoF = data.getFullYear(createdAt);
     return diaF + "/" + mesF + "/" + anoF;
   }
+
+  const getChannel = async () => {
+    const id = video.idUser;
+    try {
+        const response = await api.get(`/users/${id}`);
+        const data = response.data;
+        setChannel(data.channel);
+    } catch (error) {
+        console.log(error);
+    }
+}
+useEffect(() => {
+    getChannel();
+}, []);
+
   return (
     <>
       {video.length === 0 ? <h1>Carregando...</h1> : (
-
-
         <ContainerCard onClick={() => click(video)} key={video._id}>
           <Thumbnail src={video.thumbnail} />
           <TitleVideo>
             {video.title}
           </TitleVideo>
           <ChannelName>
-            Canal
+            {channel}
           </ChannelName>
           <ContainerInfo>
             <Views>{video.views} visualizações</Views>
